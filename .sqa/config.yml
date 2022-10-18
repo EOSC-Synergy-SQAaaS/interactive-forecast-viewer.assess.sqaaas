@@ -1,0 +1,66 @@
+config:
+  credentials: []
+  project_repos:
+    earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer:
+      branch: master
+      repo: https://earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.4
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer git:
+        commands:
+        - /usr/bin/env sh .sqa/script.scanty-grey-millipede.sh
+        container: qc.acc_homely-wheat-cow
+  QC.Doc:
+    repos:
+      earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.smelly-periwinkle-ragdoll.sh
+        container: qc.doc_wimpy-blue-akbash
+      earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer git:
+        commands:
+        - /usr/bin/env sh .sqa/script.randy-platinum-tapir.sh
+        container: qc.doc_chewy-ruby-heron
+      earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.cloudy-gold-cuttlefish.sh
+        container: qc.doc_seedy-russet-dogfish
+  QC.Lic:
+    repos:
+      earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.bumpy-buff-earwig.sh
+        container: qc.lic_skimpy-copper-crane
+  QC.Sec:
+    repos:
+      earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.snappy-goldenrod-koala.sh
+        container: qc.sec_geeky-alizarin-mongrel
+  QC.Sty:
+    repos:
+      earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.clammy-wisteria-grouse.sh
+        container: qc.sty_cozy-zucchini-fossa
+      earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.tacky-rose-quail.sh
+        container: qc.sty_dorky-celadon-dhole
+      earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer stylelint:
+        commands:
+        - /usr/bin/env sh .sqa/script.chummy-green-vulture.sh
+        container: qc.sty_thirsty-cerulean-dogfish
+  QC.Ver:
+    repos:
+      earth.bsc.es/gitlab/encomienda/interactive-forecast-viewer get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.trippy-rose-maltese.sh
+        container: qc.ver_squirrely-sapphire-crocodile
+timeout: 1800
